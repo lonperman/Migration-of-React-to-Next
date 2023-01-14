@@ -1,21 +1,16 @@
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     unoptimized: true,
     domains: ['api.lorem.space', 'placeimg.com', 'wixmp.com', 'romapy'],
   },
-  // env: {
-  //   customKey: 'customValue',
-  // },
-  // basePath: '/dist',
-  // compress: true,
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/hola',
-  //       destination: '/hello',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
 };
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  include: ['production'],
+  register: true,
+});
+
+module.exports = withPWA(nextConfig);
